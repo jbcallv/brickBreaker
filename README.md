@@ -1,6 +1,8 @@
 # brickBreaker
 Classic Brick Breaker game written in java. Please submit bug reports as needed.
 
+![BrickBreakerGameplay](BrickBreakerGameplay.jpg)
+
 # Prerequisites
 JDK installed on machine
 
@@ -11,7 +13,7 @@ JDK installed on machine
 <br />
 3.) Click on the downloaded file and game should run
 
-# Game play
+# Game Instructions
 Right arrow key (→) moves paddle to the right
 <br />
 Left arrow key (←) moves paddle to the left
