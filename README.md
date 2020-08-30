@@ -1,7 +1,7 @@
 # brickBreaker
 Classic Brick Breaker game written in java. Please submit bug reports as needed.
 
-# Pre requisites
+# Prerequisites
 JDK installed on machine
 
 # Installation
