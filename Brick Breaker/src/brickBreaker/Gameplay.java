@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 
 public class Gameplay extends JPanel implements KeyListener, ActionListener{
 
-	int max = 600;
+	int max = 540;
 	int min = 200;
 	int random_intX = (int) (Math.random() * (max - min + 1) + min);
 	int random_intY = (int) (Math.random() * (max - min + 1) + min);
@@ -26,10 +26,10 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener{
 	private boolean gameOver = false;
 	private int score = 0;
 	
-	private int totalBricks = 21;
+	private int totalBricks = 40;
 	
 	private Timer time;
-	private int delay = 8;
+	private int delay = 5;
 	
 	private int playerx = 310;
 	
@@ -42,7 +42,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener{
 	
 	
 	public Gameplay() {
-		map = new MapGen(3, 7);
+		map = new MapGen(4, 8);
 		addKeyListener(this);
 		setFocusable(true);
 		setFocusTraversalKeysEnabled(false);
@@ -53,53 +53,47 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener{
 	
 	public void paint(Graphics g) {
 		// background
-		g.setColor(Color.black);
+		g.setColor(Color.white);
 		g.fillRect(1, 1, 692, 592);
 		
 		// draw bricks
 		map.draw((Graphics2D) g);
 		
-		// borders
-		g.setColor(Color.yellow);
-		g.fillRect(0, 0, 3, 592);
-		g.fillRect(0, 0, 692, 3);
-		g.fillRect(691, 0, 3, 592);
-		
 		// score
-		g.setColor(Color.green);
-		g.setFont(new Font("serif", Font.BOLD, 25));
-		g.drawString("" + score, 590, 30);
+		g.setColor(Color.gray);
+		g.setFont(new Font("arial", Font.BOLD, 25));
+		g.drawString("Score: " + score, 20, 30);
 		
 		// paddle
-		g.setColor(Color.green);
+		g.setColor(Color.red);
 		g.fillRect(playerx, 550, 100, 8);
 		
 		// ball
-		g.setColor(Color.blue);
-		g.fillRect(ballPosX, ballPosY, 20, 20);
+		g.setColor(new Color(50, 100, 255, 100));
+		g.fillOval(ballPosX, ballPosY, 20, 20);
 		
 		if (totalBricks <= 0) {
 			gameOver = false;
 			ballDirX = 0;
 			ballDirY = 0;
-			g.setColor(Color.green);
-			g.setFont(new Font("serif", Font.BOLD, 30));
+			g.setColor(Color.gray);
+			g.setFont(new Font("arial", Font.BOLD, 30));
 			g.drawString("You Won", 260, 300);
 			
-			g.setFont(new Font("serif", Font.BOLD, 20));
+			g.setFont(new Font("arial", Font.BOLD, 20));
 			g.drawString("Press Enter to Start the Next Level", 200, 350);
 		}
 		
-		if (ballPosY > 570) {
+		if (ballPosY > 540) {
 			gameOver = false;
 			ballDirX = 0;
 			ballDirY = 0;
-			g.setColor(Color.green);
-			g.setFont(new Font("serif", Font.BOLD, 30));
-			g.drawString("Game Over, Score: " + score, 190, 300);
+			g.setColor(Color.gray);
+			g.setFont(new Font("arial", Font.BOLD, 30));
+			g.drawString("Game Over, Score: " + score, 190, 280);
 			
-			g.setFont(new Font("serif", Font.BOLD, 20));
-			g.drawString("Press Enter to Restart", 230, 350);
+			g.setFont(new Font("arial", Font.BOLD, 20));
+			g.drawString("Press Enter to Restart", 230, 315);
 			
 		}
 		
@@ -112,7 +106,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener{
 		
 		if (gameOver) {
 			
-			if (new Rectangle(ballPosX, ballPosY, 20, 20).intersects(new Rectangle(playerx, 550, 100, 8))) {
+			if (new Rectangle(ballPosX, ballPosY, 20, 20).intersects(new Rectangle(playerx, 558, 100, 8))) {
 				ballDirY = -ballDirY;
 			}
 			
@@ -166,6 +160,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener{
 	public void keyTyped(KeyEvent e) {}
 
 	@Override
+	// add pause button
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			if (playerx >= 600) {
@@ -178,8 +173,8 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener{
 		}
 		
 		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-			if (playerx < 10) {
-				playerx = 10;
+			if (playerx < 2) {
+				playerx = 0;
 			} else {
 				// move left
 				gameOver = true;
