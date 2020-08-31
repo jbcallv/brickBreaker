@@ -168,7 +168,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener{
 			} else {
 				// move right
 				gameOver = true;
-				playerx += 20;
+				playerx += 38;
 			}
 		}
 		
@@ -178,7 +178,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener{
 			} else {
 				// move left
 				gameOver = true;
-				playerx -= 20;
+				playerx -= 38;
 			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
