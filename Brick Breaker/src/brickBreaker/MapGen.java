@@ -10,6 +10,7 @@ public class MapGen {
 	public int brickWidth;
 	public int brickHeight;
 	
+	// hello
 	public MapGen(int row, int col) {
 		map = new int[row][col];
 		for (int i = 0; i < map.length; i++) {

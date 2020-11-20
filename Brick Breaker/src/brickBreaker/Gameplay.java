@@ -23,17 +23,18 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener{
 	int random_intX = (int) (Math.random() * (max - min + 1) + min);
 	int random_intY = (int) (Math.random() * (max - min + 1) + min);
 	
-	private boolean gameOver = false;
+	public boolean gameOver = false;
+	public boolean collision = false;
 	private int score = 0;
 	
 	private int totalBricks = 40;
 	
 	private Timer time;
-	private int delay = 5;
+	private int delay = 1;
 	
-	private int playerx = 310;
+	public int playerx = 310;
 	
-	private int ballPosX = random_intX;
+	public int ballPosX = random_intX;
 	private int ballPosY = random_intY;
 	private int ballDirX = -1;
 	private int ballDirY = -2;
@@ -73,6 +74,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener{
 		g.fillOval(ballPosX, ballPosY, 20, 20);
 		
 		if (totalBricks <= 0) {
+			collision = true;
 			gameOver = false;
 			ballDirX = 0;
 			ballDirY = 0;
@@ -85,6 +87,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener{
 		}
 		
 		if (ballPosY > 540) {
+			collision = true;
 			gameOver = false;
 			ballDirX = 0;
 			ballDirY = 0;
